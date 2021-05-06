@@ -1,0 +1,3 @@
+export const MAX_LICENSE_PLATE_LENGTH = 20
+
+export const MAX_COMMENT_LENGTH = 1000
