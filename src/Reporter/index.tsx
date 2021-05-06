@@ -1,4 +1,4 @@
-import { DriverTrait, DRIVER_TRAITS, REGIONS } from '../domain'
+import { DRIVER_TRAITS, REGIONS } from '../domain'
 import { MAX_COMMENT_LENGTH, MAX_LICENSE_PLATE_LENGTH } from 'config'
 import { useState } from "react"
 import { sendLicensePlateReport } from "actions"
