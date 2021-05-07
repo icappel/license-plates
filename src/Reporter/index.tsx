@@ -28,10 +28,11 @@ function Reporter() {
     return (
         <form onSubmit={handleSubmit} >
             <div className="field">
-                <label className="label">Plate number</label>
+                <label className="label" htmlFor="plate-input">Plate Number</label>
                 <div className="control">
                     <input 
                         className="input" 
+                        id="plate-input"
                         placeholder="Plate number" 
                         required
                         maxLength={MAX_LICENSE_PLATE_LENGTH} 
@@ -41,30 +42,31 @@ function Reporter() {
                 </div>
             </div>
             <div className="field">
-                <label className="label">Region</label>
+                <label className="label" htmlFor="region-input">Region</label>
                 <div className="control">
                     <div className="select">
-                        <select value={region} onChange={event => setRegion(event.target.value)} >
+                        <select id="region-input" value={region} onChange={event => setRegion(event.target.value)} >
                             {REGIONS.map((region) => <option key={region}>{region}</option>)}
                         </select>
                     </div>
                 </div>
             </div>
             <div className="field">
-                <label className="label">Region</label>
+                <label className="label" htmlFor="trait-input">Trait</label>
                 <div className="control">
                     <div className="select">
-                        <select onChange={event => setTrait(event.target.value)} >
-                            {DRIVER_TRAITS.map(trait => <option value={trait.name} key={trait.name}>{`${trait.name} ${trait.emoji}`}</option>)}
+                        <select id="trait-input" onChange={event => setTrait(event.target.value)} >
+                            {DRIVER_TRAITS.map(trait => <option value={trait.name} key={trait.name}>{trait.name} {trait.emoji}</option>)}
                         </select>
                     </div>
                 </div>
             </div>
             <div className="field">
-                <label className="label">Comment (Optional)</label>
+                <label className="label" htmlFor="comment-input">Comment (Optional)</label>
                 <div className="control">
                     <textarea 
                         className="textarea" 
+                        id="comment-input"
                         placeholder="Comment"
                         maxLength={MAX_COMMENT_LENGTH}
                         value={comment}
