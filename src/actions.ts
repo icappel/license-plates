@@ -44,10 +44,7 @@ export const getLicensePlate = async (plate: string, region: string) => {
 export const sendLicensePlateReport = async (plate: string, region: string, trait: string, note: string) => {
     // Mocked for now. TODO: replace
     console.log("Send Licnese Plate Report")
-    return new Promise((resolve, reject) => {
-        resolve({
-            success: true,
-            numberReported: 10
-        })
+    return new Promise((resolve: (numberReported: number) => void, reject: (error: string) => void) => {
+        resolve(10)
     })
 }

@@ -7,7 +7,7 @@ function HomeReporter() {
             <section className="hero">
                 <div className="hero-body">
                     <div className="title">
-                        Report a driver
+                        <h2>Report a driver</h2>
                     </div>
                     <div className="subtitle">
                         <Reporter />

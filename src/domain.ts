@@ -2,12 +2,12 @@ export const REGIONS = [
     "Ontario"
 ]
 
-export interface DriverTrait {
+export interface IDriverTrait {
     name: string
     emoji: string
 }
 
-export const DRIVER_TRAITS: Array<DriverTrait> = [
+export const DRIVER_TRAITS: Array<IDriverTrait> = [
     {
         name: "Aggressive",
         emoji: "😡"

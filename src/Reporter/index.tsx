@@ -1,86 +1,62 @@
 import { DRIVER_TRAITS, REGIONS } from '../domain'
-import { MAX_COMMENT_LENGTH, MAX_LICENSE_PLATE_LENGTH } from 'config'
 import { useState } from "react"
 import { sendLicensePlateReport } from "actions"
+import ReporterSuccess from 'ReporterSuccess'
+import ReporterForm from 'ReporterForm'
 
 function Reporter() {
     const [plateNumber, setPlateNumber] = useState("")
     const [region, setRegion] = useState(REGIONS[0])
-    const [trait, setTrait] = useState<string>("")
+    const [trait, setTrait] = useState<string>(DRIVER_TRAITS[0].name)
     const [comment, setComment] = useState("")
+    const [timesReported, setTimesReported] = useState(-1)
 
     const isValid = (): boolean => {
         return (plateNumber.match(/[a-zA-Z0-9]+/) != null)
             && trait.length > 0
     }
 
+    const clearForm = () => {
+        setPlateNumber("")
+        setRegion(REGIONS[0])
+        setTrait(DRIVER_TRAITS[0].name)
+        setComment("")
+    }
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (isValid()) {
             sendLicensePlateReport(plateNumber, region, trait, comment)
-                .then(() => alert("Finish report submit"))
+                .then((numReported: number) => {
+                    setTimesReported(numReported)
+                    clearForm()
+                })
+                .catch((error: string) => {
+                    alert(error)
+                })
         } else {
-            alert("TODO: Form error validation")
+            alert("Please make sure everything is filled out properly.")
         }
 
         event.preventDefault()
     }
 
-    return (
-        <form onSubmit={handleSubmit} >
-            <div className="field">
-                <label className="label" htmlFor="plate-input">Plate Number</label>
-                <div className="control">
-                    <input 
-                        className="input" 
-                        id="plate-input"
-                        placeholder="Plate number" 
-                        required
-                        maxLength={MAX_LICENSE_PLATE_LENGTH} 
-                        onChange={(event => setPlateNumber(event.target.value))} 
-                        value={plateNumber} 
-                    />
-                </div>
-            </div>
-            <div className="field">
-                <label className="label" htmlFor="region-input">Region</label>
-                <div className="control">
-                    <div className="select">
-                        <select id="region-input" value={region} onChange={event => setRegion(event.target.value)} >
-                            {REGIONS.map((region) => <option key={region}>{region}</option>)}
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div className="field">
-                <label className="label" htmlFor="trait-input">Trait</label>
-                <div className="control">
-                    <div className="select">
-                        <select id="trait-input" onChange={event => setTrait(event.target.value)} >
-                            {DRIVER_TRAITS.map(trait => <option value={trait.name} key={trait.name}>{trait.name} {trait.emoji}</option>)}
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div className="field">
-                <label className="label" htmlFor="comment-input">Comment (Optional)</label>
-                <div className="control">
-                    <textarea 
-                        className="textarea" 
-                        id="comment-input"
-                        placeholder="Comment"
-                        maxLength={MAX_COMMENT_LENGTH}
-                        value={comment}
-                        onChange={event => setComment(event.target.value)}
-                    ></textarea>
-                </div>
-            </div>
-            <div className="field">
-                <div className="control">
-                    <button type="submit" className="button is-link">Submit</button>
-                </div>
-            </div>
-        </form>
-    )
+    return timesReported >= 0 ? 
+        <ReporterSuccess 
+            timesReported={timesReported} 
+            onReset={() => setTimesReported(-1)} 
+        /> 
+        : 
+        <ReporterForm 
+            plateNumber={plateNumber}
+            setPlateNumber={setPlateNumber}
+            region={region}
+            setRegion={setRegion}
+            trait={trait}
+            setTrait={setTrait}
+            comment={comment}
+            setComment={setComment}
+            handleSubmit={handleSubmit}    
+        />
 }
 
 export default Reporter
