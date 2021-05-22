@@ -1,5 +1,0 @@
-{
-    "BACKEND_URL": "https://3pza0i2axc.execute-api.us-west-2.amazonaws.com",
-    "MAX_LICENSE_PLATE_LENGTH": 20,
-    "MAX_COMMENT_LENGTH": 1000
-}

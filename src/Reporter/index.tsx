@@ -1,5 +1,5 @@
 import { DRIVER_TRAITS, REGIONS } from '../domain'
-import { useState } from "react"
+import React, { useState } from 'react'
 import { sendLicensePlateReport } from "actions"
 import ReporterSuccess from 'ReporterSuccess'
 import ReporterForm from 'ReporterForm'
@@ -26,12 +26,11 @@ function Reporter() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (isValid()) {
             sendLicensePlateReport(plateNumber, region, trait, comment)
-                .then((numReported: number) => {
-                    setTimesReported(numReported)
+                .then((result: {code: number, numReported: number}) => {
+                    setTimesReported(result.numReported)
                     clearForm()
-                })
-                .catch((error: string) => {
-                    alert(error)
+                }, (error: {clientFail: boolean, code: number, message: string}) => {
+                    alert(error.message)
                 })
         } else {
             alert("Please make sure everything is filled out properly.")
