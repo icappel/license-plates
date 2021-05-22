@@ -4,7 +4,7 @@ import Reporter from "../Reporter";
 function HomeReporter() {
     return (
         <main>
-            <section className="hero">
+            <section className="hero box">
                 <div className="hero-body">
                     <div className="title">
                         <h2>Report a driver</h2>

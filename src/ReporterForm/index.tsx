@@ -15,7 +15,7 @@ interface IReporterFormProps {
 
 function ReporterForm(props:IReporterFormProps) {
     return (
-        <form onSubmit={props.handleSubmit} className="box" >
+        <form onSubmit={props.handleSubmit}>
             <div className="field">
                 <label className="label" htmlFor="plate-input">Plate Number</label>
                 <div className="control">
