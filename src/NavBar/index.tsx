@@ -1,20 +1,11 @@
+import { Link } from 'react-router-dom'
 
 function NavBar() {
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
-                    License Plate Reporter
-                </a>
-                <a className="navbar-item" href="/search">
-                        Search Plates
-                </a>
-            </div>
-
-            <div id="navbarBasicExample" className="navbar-menu">
-                <div className="navbar-start">
-                    
-                </div>
+                <Link to="/" className="navbar-item">License Plate Reporter</Link>
+                <Link to="/search" className="navbar-item">Search Plates</Link>
             </div>
         </nav>
     )
