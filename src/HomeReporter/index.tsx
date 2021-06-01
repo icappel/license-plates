@@ -3,8 +3,8 @@ import Reporter from "../Reporter";
 
 function HomeReporter() {
     return (
-        <main>
-            <section className="hero box">
+        <main className="columns is-centered">
+            <section className="hero box column is-half">
                 <div className="hero-body">
                     <div className="title">
                         <h2>Report a driver</h2>
