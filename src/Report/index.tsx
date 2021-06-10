@@ -7,22 +7,21 @@ export interface ReportProps {
 function Report(props: ReportProps) {
     // Note: React auto-escapes rendered strings, that's why I'm not manually sanitizing them.
     return (
-        <div className="card">
-            <header className="card-header">
+        <div className="card mb-3">
+            <header className="card-header is-shadowless">
                 <p className="card-header-title">
-                    Report from:{" "}
-                    <time dateTime={props.date.toISOString()}>{props.date.toDateString()}</time>
+                    Report from:&nbsp;<time dateTime={props.date.toISOString()}>{props.date.toDateString()}</time>
                 </p>
             </header>
             <div className="card-content">
                 <div className="content">
                     <p>
-                        This driver was reported as being {props.trait}.
+                        This driver was reported as being: {props.trait}.
                     </p>
                     {
                         props.note && 
                         <p>
-                            The reporter also left the following comment: "{props.note}""
+                            The reporter also left the following comment: "{props.note}"
                         </p>
                     }
                     

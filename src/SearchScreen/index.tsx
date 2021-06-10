@@ -27,8 +27,9 @@ function SearchScreen() {
     }
 
     return (
-        <div className="columns is-centered">
-            <div className="column is-half">
+        <div className="columns is-centered py-5 px-3">
+            <div className="column is-half is-max-desktop">
+                <h1 className="title is-3">Search for a license plate</h1>
                 <div className="my-2">
                     <PlateSearch 
                         onSearch={onSearch} 
@@ -38,12 +39,12 @@ function SearchScreen() {
                         setRegion={setRegion}
                     />
                 </div>
-                <div className="my-2">
-                    Results:
+                <div className="my-5">
+                    <h2 className="title is-4">{searchedYet && "Results:"}</h2>
                 </div>
                 <ReportList 
                     reports={reports} 
-                    emptyMessage={searchedYet ? "Sorry, no results found." : "Please search for a plate."}
+                    emptyMessage={searchedYet ? "Sorry, no results found." : ""}
                 />
             </div>
         </div>

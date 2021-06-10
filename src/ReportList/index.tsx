@@ -1,5 +1,6 @@
 import { IReport } from "actions"
 import Report from "Report"
+import "./styles.css"
 
 export interface ReportListProps {
     reports: Array<IReport>,
@@ -11,7 +12,7 @@ export interface ReportListProps {
 function ReportList(props: ReportListProps) {
 
     return (
-        <section>
+        <section className="report-list mb-6">
             {props.reports.length ?
                 props.reports.map(report => <Report key={report.reportId} date={report.date} trait={report.trait} note={report.note} />)
                 :
