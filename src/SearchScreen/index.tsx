@@ -8,8 +8,10 @@ function SearchScreen() {
     const [plate, setPlate] = useState("")
     const [reports, setReports] = useState([])
     const [searchedYet, setSearchedYet] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const onSearch = async () => {
+        setLoading(true)
         searchPlate(plate, region)
             .then((response: any) => {
                 if (response.code === 200) {
@@ -17,6 +19,7 @@ function SearchScreen() {
                 } else {
                     setReports([])
                 }
+                setLoading(false)
                 setSearchedYet(true)
             })
             .catch((reason => {
@@ -37,10 +40,11 @@ function SearchScreen() {
                         setPlate={setPlate} 
                         region={region}
                         setRegion={setRegion}
+                        loading={loading}
                     />
                 </div>
                 <div className="my-5">
-                    <h2 className="title is-4">{searchedYet && "Results:"}</h2>
+                    {searchedYet && <h2 className="title is-4">Results:</h2>}
                 </div>
                 <ReportList 
                     reports={reports} 

@@ -10,6 +10,7 @@ function Reporter() {
     const [trait, setTrait] = useState<string>(DRIVER_TRAITS[0].name)
     const [comment, setComment] = useState("")
     const [timesReported, setTimesReported] = useState(-1)
+    const [loading, setLoading] = useState(false)
 
     const isValid = (): boolean => {
         return (plateNumber.match(/[a-zA-Z0-9]+/) != null)
@@ -25,12 +26,15 @@ function Reporter() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (isValid()) {
+            setLoading(true)
             sendLicensePlateReport(plateNumber, region, trait, comment)
                 .then((result: {code: number, numReported: number}) => {
                     setTimesReported(result.numReported)
                     clearForm()
+                    setLoading(false)
                 }, (error: {clientFail: boolean, code: number, message: string}) => {
                     alert(error.message)
+                    setLoading(false)
                 })
         } else {
             alert("Please make sure everything is filled out properly.")
@@ -54,7 +58,8 @@ function Reporter() {
             setTrait={setTrait}
             comment={comment}
             setComment={setComment}
-            handleSubmit={handleSubmit}    
+            handleSubmit={handleSubmit} 
+            loading={loading}   
         />
 }
 

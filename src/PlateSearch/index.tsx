@@ -6,7 +6,8 @@ export interface IPlateSearchProps {
     region: string,
     setRegion: (newRegion: string) => any,
     plate: string,
-    setPlate: (newPlate: string) => any
+    setPlate: (newPlate: string) => any,
+    loading: boolean
 }
 
 const PlateSearch = (props: IPlateSearchProps) => {
@@ -22,8 +23,6 @@ const PlateSearch = (props: IPlateSearchProps) => {
                         </select>
                     </div>
                 </div>
-            {/* </div>
-            <div className="field"> */}
                 <label className="label is-sr-only" htmlFor="plate-input">Plate Number</label>
                 <div className="control">
                     <input 
@@ -36,10 +35,8 @@ const PlateSearch = (props: IPlateSearchProps) => {
                         value={props.plate} 
                     />
                 </div>
-            {/* </div>
-            <div className="field"> */}
                 <div className="control">
-                    <button type="submit" className="button is-link">Search</button>
+                    <button type="submit" className={"button is-link" + (props.loading ? " is-loading" : "")}>Search</button>
                 </div>
             </div>
         </form>

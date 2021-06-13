@@ -10,7 +10,8 @@ interface IReporterFormProps {
     setTrait: (newTrait: string) => any,
     comment: string,
     setComment: (newComment: string) => any,
-    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => any
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => any,
+    loading: boolean
 }
 
 function ReporterForm(props:IReporterFormProps) {
@@ -65,7 +66,7 @@ function ReporterForm(props:IReporterFormProps) {
             </div>
             <div className="field">
                 <div className="control">
-                    <button type="submit" className="button is-link">Submit</button>
+                    <button type="submit" className={"button is-link" + (props.loading ? " is-loading" : "")}>Submit</button>
                 </div>
             </div>
         </form>
