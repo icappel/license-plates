@@ -11,3 +11,5 @@ updated and queried a DynamoDB table.
 I've included the code for the Lambda functions in the /lambda directory. 
 Someday I might get around to creating a CloudFormation template to make the 
 infrastructure reproducible. 
+
+![Screenshot of the app](license-plates.png)
