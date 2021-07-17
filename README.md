@@ -13,3 +13,5 @@ Someday I might get around to creating a CloudFormation template to make the
 infrastructure reproducible. 
 
 ![Screenshot of the app](license-plates.png)
+
+To run the frontend, run `npm i` and `npm start`.
